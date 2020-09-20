@@ -17,12 +17,24 @@
         if (response.status === 200) {
         response.json().then(function(data) {
           data.forEach(function (element, i) {
-            var p = document.createElement('p');
+            var p = document.createElement('span');
             var img = document.createElement('img');
             p.textContent = i+1 + ". " + element["name"] + " / " + element["artists"];
             img.src = element["images"][2]['url'];
-            document.getElementById('output').appendChild(p);
-            document.getElementById('output').appendChild(img);
+            //document.getElementById('output').appendChild(p);
+            //document.getElementById('output').appendChild(img);
+            var container = document.createElement('div');
+            container.setAttribute('id', 'container');
+            var itemA = document.createElement('div');
+            itemA.setAttribute('id', 'itemA');
+            var itemB = document.createElement('div');
+            itemB.setAttribute('id', 'itemB');
+            itemA.appendChild(img);
+            //#itemB.appendChild(p);
+            itemB.innerHTML = i+1 + ". " + element["name"] + " / " + element["artists"];
+            container.appendChild(itemA);
+            container.appendChild(itemB);
+            document.getElementById('output').appendChild(container);
           });
         });
         } else {
@@ -42,7 +54,7 @@
 <img src="images/gumuncle.png" width="100px">
 <h2>RECENTLY PLAYED:</h2>
 <div id='output'>
-  <div class="grid-container">
+  <div class="container"></div>
   <div id='name'></div>
   <div id='artist'></div>
   <div id='images'></div>
