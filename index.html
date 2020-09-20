@@ -17,20 +17,18 @@
         if (response.status === 200) {
         response.json().then(function(data) {
           data.forEach(function (element, i) {
-            var p = document.createElement('span');
             var img = document.createElement('img');
-            p.textContent = i+1 + ". " + element["name"] + " / " + element["artists"];
-            img.src = element["images"][2]['url'];
-            //document.getElementById('output').appendChild(p);
-            //document.getElementById('output').appendChild(img);
+            var a = document.createElement('a');
             var container = document.createElement('div');
-            container.setAttribute('id', 'container');
             var itemA = document.createElement('div');
-            itemA.setAttribute('id', 'itemA');
             var itemB = document.createElement('div');
+            img.src = element["images"][2]['url'];
+            container.setAttribute('id', 'container');
+            itemA.setAttribute('id', 'itemA');
             itemB.setAttribute('id', 'itemB');
-            itemA.appendChild(img);
-            //#itemB.appendChild(p);
+            a.href = element["url"];
+            a.appendChild(img);
+            itemA.appendChild(a);
             itemB.innerHTML = i+1 + ". " + element["name"] + " / " + element["artists"];
             container.appendChild(itemA);
             container.appendChild(itemB);
