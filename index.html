@@ -16,10 +16,10 @@
       .then(response => {
         if (response.status === 200) {
         response.json().then(function(data) {
-          data.forEach(function (element) {
+          data.forEach(function (element, i) {
             var p = document.createElement('p');
             var img = document.createElement('img');
-            p.textContent = element["name"] + " / " + element["artists"];
+            p.textContent = i+1 + ". " + element["name"] + " / " + element["artists"];
             img.src = element["images"][2]['url'];
             document.getElementById('output').appendChild(p);
             document.getElementById('output').appendChild(img);
