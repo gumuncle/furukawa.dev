@@ -28,6 +28,7 @@
             itemB.setAttribute('id', 'itemB');
             a.href = element["url"];
             a.appendChild(img);
+            a.setAttribute('target', '_blank');
             itemA.appendChild(a);
             itemB.innerHTML = i+1 + ". " + element["name"] + " / " + element["artists"];
             container.appendChild(itemA);
