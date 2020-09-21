@@ -23,7 +23,7 @@
               var a = document.createElement('a');
               var container = document.createElement('div');
               var itemA = document.createElement('div');
-              var itemB = document.createElement('div');
+              var itemB = document.createElement('a');
               var h2 = document.createElement('h2');
               h2.innerHTML = "NOW PLAYING:";
               h2.setAttribute('class', 'page-header');
@@ -41,6 +41,8 @@
                 artists.push(artist["name"]);
               })
               itemB.innerHTML = data["item"]["name"] + " / " + artists.join(",");
+              itemB.href = a.href;
+              itemB.setAttribute('target', '_blank');
               container.appendChild(itemA);
               container.appendChild(itemB);
               document.getElementById('now').appendChild(h2);
@@ -67,7 +69,7 @@
             var a = document.createElement('a');
             var container = document.createElement('div');
             var itemA = document.createElement('div');
-            var itemB = document.createElement('div');
+            var itemB = document.createElement('a');
             img.src = element["images"][2]['url'];
             container.setAttribute('id', 'container');
             itemA.setAttribute('id', 'itemA');
@@ -83,6 +85,8 @@
               artists.push(artist["name"]);
             })
             itemB.innerHTML = i+1 + ". " + element["name"] + " / " + artists.join(',');
+            itemB.href = element["url"];
+            itemB.setAttribute('target', '_blank');
             container.appendChild(itemA);
             container.appendChild(itemB);
             document.getElementById('output').appendChild(container);
@@ -103,6 +107,7 @@
 <body>
 <h1 class="hero-unit">gumuncle.com</h1>
 <img id="img-rounded" src="images/gumuncle.png" width="100px">
+<a href="https://github.com/gumuncle" target="_blank">> GITHUB </a>
 <div id='now'>
   <div class="container"></div>
 </div>
@@ -113,5 +118,9 @@
   <div id='artist'></div>
   <div id='images'></div>
 </div>
+<footer class="modal-body">
+  <span>Author: Yusuke FURUKAWA<br>
+  <span>This site uses <a href="https://github.com/kristopolous/BOOTSTRA.386" target="_blank">BOOTSTRA.386</a>.<br>
+</footer>
 </body>
 </html>
