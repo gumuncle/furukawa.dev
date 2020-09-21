@@ -11,6 +11,44 @@
   <title>gumuncle.com</title>
   <link rel="stylesheet" href="styles.css">
   <script>
+    const request2 = new Request('https://gumuncle.s3-ap-northeast-1.amazonaws.com/now.txt');
+    fetch(request2)
+      .then(response => {
+        if (response.status === 200) {
+        response.json().then(function(data) {
+            if (data != null && data["is_playing"] === true) {
+              var img = document.createElement('img');
+              var a = document.createElement('a');
+              var container = document.createElement('div');
+              var itemA = document.createElement('div');
+              var itemB = document.createElement('div');
+              var h2 = document.createElement('h2');
+              h2.innerHTML = "NOW PLAYING:";
+              img.src = data["item"]["album"]["images"][2]['url'];
+              container.setAttribute('id', 'container');
+              itemA.setAttribute('id', 'itemA');
+              itemB.setAttribute('id', 'itemB');
+              a.href = data["item"]["external_urls"]["spotify"];
+              a.appendChild(img);
+              a.setAttribute('target', '_blank');
+              itemA.appendChild(a);
+              itemB.innerHTML = data["item"]["name"] + " / " + data["item"]["artists"][0]["name"];
+              container.appendChild(itemA);
+              container.appendChild(itemB);
+              document.getElementById('now').appendChild(h2);
+              document.getElementById('now').appendChild(container);
+            }
+        });
+        } else {
+          throw new Error('Something went wrong on api server!');
+        }
+      })
+      .then(response => {
+        console.debug(response);
+        // ...
+      }).catch(error => {
+        console.error(error);
+      });  
     const request = new Request('https://gumuncle.s3-ap-northeast-1.amazonaws.com/output.txt');
     fetch(request)
       .then(response => {
@@ -51,6 +89,9 @@
 <body>
 <h1>gumuncle.com</h1>
 <img src="images/gumuncle.png" width="100px">
+<div id='now'>
+  <div class="container"></div>
+</div>
 <h2>RECENTLY PLAYED:</h2>
 <div id='output'>
   <div class="container"></div>
