@@ -32,7 +32,11 @@
               a.appendChild(img);
               a.setAttribute('target', '_blank');
               itemA.appendChild(a);
-              itemB.innerHTML = data["item"]["name"] + " / " + data["item"]["artists"][0]["name"];
+              var artists = [];
+              data["item"]["artists"].forEach(function (artist){
+                artists.push(artist["name"]);
+              })
+              itemB.innerHTML = data["item"]["name"] + " / " + artists.join(",");
               container.appendChild(itemA);
               container.appendChild(itemB);
               document.getElementById('now').appendChild(h2);
@@ -68,7 +72,12 @@
             a.appendChild(img);
             a.setAttribute('target', '_blank');
             itemA.appendChild(a);
-            itemB.innerHTML = i+1 + ". " + element["name"] + " / " + element["artists"];
+            console.log(element);
+            var artists = [];
+            element["artists"][0].forEach(function (artist){
+              artists.push(artist["name"]);
+            })
+            itemB.innerHTML = i+1 + ". " + element["name"] + " / " + artists.join(',');
             container.appendChild(itemA);
             container.appendChild(itemB);
             document.getElementById('output').appendChild(container);
