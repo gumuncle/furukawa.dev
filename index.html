@@ -10,6 +10,7 @@
 <meta name="theme-color" content="#ffffff">
   <title>gumuncle.com</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
   <script>
     const request2 = new Request('https://gumuncle.s3-ap-northeast-1.amazonaws.com/now.txt');
     fetch(request2)
@@ -24,6 +25,7 @@
               var itemB = document.createElement('div');
               var h2 = document.createElement('h2');
               h2.innerHTML = "NOW PLAYING:";
+              h2.setAttribute('class', 'page-header');
               img.src = data["item"]["album"]["images"][2]['url'];
               container.setAttribute('id', 'container');
               itemA.setAttribute('id', 'itemA');
@@ -31,6 +33,7 @@
               a.href = data["item"]["external_urls"]["spotify"];
               a.appendChild(img);
               a.setAttribute('target', '_blank');
+              a.setAttribute('class', 'thumbnail');
               itemA.appendChild(a);
               var artists = [];
               data["item"]["artists"].forEach(function (artist){
@@ -71,6 +74,7 @@
             a.href = element["url"];
             a.appendChild(img);
             a.setAttribute('target', '_blank');
+            a.setAttribute('class', 'thumbnail');
             itemA.appendChild(a);
             console.log(element);
             var artists = [];
@@ -96,12 +100,12 @@
   </script>
 </head>
 <body>
-<h1>gumuncle.com</h1>
-<img src="images/gumuncle.png" width="100px">
+<h1 class="hero-unit">gumuncle.com</h1>
+<img id="img-rounded" src="images/gumuncle.png" width="100px">
 <div id='now'>
   <div class="container"></div>
 </div>
-<h2>RECENTLY PLAYED:</h2>
+<h2 class="page-header">RECENTLY PLAYED:</h2>
 <div id='output'>
   <div class="container"></div>
   <div id='name'></div>
